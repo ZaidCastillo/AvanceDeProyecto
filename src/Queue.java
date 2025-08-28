@@ -47,7 +47,6 @@ public class Queue {
             return;
         }
         Node temp = front;
-        System.out.println("Procesos: ");
         while (temp!=null){
             System.out.print(temp.data + " -> ");
             temp = temp.next;

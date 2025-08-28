@@ -7,10 +7,10 @@ public class Main {
         boolean seguir = true;
         Queue cola = new Queue();
         Pila pila = new Pila();
-        // Menú principal del sistema operativo simulado.
+        // Menú principal de la maquila AACUDYN
         while (seguir) {
             try {
-                // Menú principal.
+                // Menú principal para acceder a los departamentos al iniciar turno.
                 System.out.println("\nBienvenido a AACUDYN");
                 System.out.print("\nA qué departamento ingresarás? \n1. Procesos\n2. Mantenimiento\n3. Terminar turno\n");
                 int opcion = scanner.nextInt();
@@ -19,19 +19,20 @@ public class Main {
                     throw new IllegalArgumentException("Valor fuera del rango.");
                 }
                 switch (opcion) {
-                    // Menú interno para utilizar las funciones de la lista de cola.
+                    // Menú interno para realizar actividades de procesos.
                     case 1:
                         boolean submenu1 = true;
                         while (submenu1) {
                             try {
-                                System.out.print("\n¿Qué quieres hacer?\n1. Agregar proceso\n2. Atender proceso \n3. Ver lista de procesos\n4. Salir de este menú\n ");
+                                System.out.print("\n¿Qué quieres hacer?\n1. Agregar proceso\n2. Atender proceso \n3. Ver lista de procesos\n4. Reportar error\n5. Salir de este menú\n");
                                 int datoElegido = scanner.nextInt();
                                 scanner.nextLine();
-                                if (datoElegido < 1 || datoElegido > 4) {
+                                if (datoElegido < 1 || datoElegido > 5) {
                                     throw new IllegalArgumentException("Valor fuera del rango.");
                                 }
                                 switch (datoElegido) {
                                     case 1:
+                                        // Actividades frecuentes de procesos.
                                         System.out.print("\nLISTA DE TAREAS:\n1. Iniciar ciclo de inyección de molde\n2. Empaque y etiquetado de lote \n3. Preparar resina seca\n4. Salir de este menú\n");
                                         int tarea = scanner.nextInt();
                                         scanner.nextLine();
@@ -75,7 +76,16 @@ public class Main {
                                         System.out.println("Tarea próxima a realizar "+ cola.peek());
                                         cola.display();
                                         break;
+                                        // Se puede informar de una falla hacia el departamento de mantenimiento.
                                     case 4:
+                                        System.out.print("Reporte: ");
+                                        String reporte = scanner.nextLine();
+                                        if (reporte.isBlank()){
+                                            throw new IllegalArgumentException("Campo en blanco, intenta de nuevo.");
+                                        }
+                                        pila.push(reporte);
+                                        break;
+                                    case 5:
                                         System.out.println("Devolviéndote al menú principal...");
                                         submenu1 = false;
                                         break;
@@ -88,7 +98,7 @@ public class Main {
                             }
                         }
                         break;
-                    // Menú interno para utilizar las funciones de la lista de pila.
+                    // Menú interno para acceder/realizar actividades de mantenimiento.
                     case 2:
                         boolean submenu2 = true;
                         while (submenu2) {
@@ -101,6 +111,7 @@ public class Main {
                                 }
                                 switch (datoElegido) {
                                     case 1:
+                                        // Errores frecuentes en la empresa.
                                         System.out.print("\nLISTA DE TAREAS DE URGENCIA:\n1. Ajustar parámetros de temperatura\n2. Desobstaculizar máquina \n3. Reparar fuga en el sistema hidráulico\n4. Otro \n5. Salir de este menú\n");
                                         int tarea = scanner.nextInt();
                                         scanner.nextLine();
@@ -133,6 +144,7 @@ public class Main {
                                                 pila.push("Reparar fuga en el sistema hidráulico de prensa "+ prensa);
                                                 System.out.println("Se atenderá lo antes posible.");
                                                 break;
+                                                // Reportar un error personalizado a atender.
                                             case 4:
                                                 System.out.print("Reporte: ");
                                                 String reporte = scanner.nextLine();
@@ -169,8 +181,14 @@ public class Main {
                             }
                         }
                         break;
+                        // Opción para salir al terminar turno.
                     case 3:
                         System.out.println("¡Hoy hiciste un buen trabajo!...");
+                        System.out.println("\nTareas pendientes por realizar: ");
+                        System.out.print("Departamento de procesos - ");
+                        cola.display();
+                        System.out.print("Departamento de mantenimiento - ");
+                        pila.display();
                         seguir = false;
                         break;
                 }

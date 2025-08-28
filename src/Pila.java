@@ -38,7 +38,7 @@ public class Pila {
     // Función para mostrar la lista creada hasta el momento.
     public void display () {
         if (front == null) {
-            System.out.println("La pila está vacía");
+            System.out.println("No hay errores por atender");
             return;
         }
         Node temp = front;
