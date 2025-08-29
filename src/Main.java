@@ -7,11 +7,11 @@ public class Main {
         boolean seguir = true;
         Queue cola = new Queue();
         Pila pila = new Pila();
-        // Menú principal de la maquila AACUDYN
+        // Menú principal de la maquila ACCUDYN
         while (seguir) {
             try {
-                // Menú principal para acceder a los departamentos al iniciar turno.
-                System.out.println("\nBienvenido a AACUDYN");
+                // Menú principal para acceder a los departamentos al iniciar tuAArno.
+                System.out.println("\nBienvenido a ACCUDYN");
                 System.out.print("\nA qué departamento ingresarás? \n1. Procesos\n2. Mantenimiento\n3. Terminar turno\n");
                 int opcion = scanner.nextInt();
                 scanner.nextLine();
